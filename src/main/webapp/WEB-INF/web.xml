@@ -12,7 +12,7 @@
         <init-param>
             <param-name>contextConfigLocation</param-name>
             <param-value>
-                src/main/resourcess/spring-context.xml
+                WEB-INF/classes/spring-context.xml
             </param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
