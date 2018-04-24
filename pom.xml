@@ -5,7 +5,7 @@
 	<groupId>com.carlos</groupId>
 	<artifactId>MiniStore</artifactId>
 	<packaging>war</packaging>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>0.0.3-ALPHA</version>
 	<name>MiniStore Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<properties>
@@ -16,13 +16,26 @@
 		<spring-security.version>5.0.4.RELEASE</spring-security.version>
 		<spring-data-jpa.version>2.0.6.RELEASE</spring-data-jpa.version>
 		<liquibase-core.version>3.5.3</liquibase-core.version>
+		<liquibase-maven-plugin.version>3.6.0</liquibase-maven-plugin.version>
 		<mysql.version>6.0.6</mysql.version>
+		<lombok-maven.version>1.16.20.0</lombok-maven.version>
 	</properties>
 	<dependencies>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok-maven</artifactId>
+			<version>${lombok-maven.version}</version>
+			<type>pom</type>
+		</dependency>
 		<dependency>
 			<groupId>org.liquibase</groupId>
 			<artifactId>liquibase-core</artifactId>
 			<version>${liquibase-core.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.liquibase</groupId>
+			<artifactId>liquibase-maven-plugin</artifactId>
+			<version>${liquibase-maven-plugin.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
@@ -100,18 +113,36 @@
 	</repositories>
 	<build>
 		<finalName>MiniStore</finalName>
-
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
+				<version>3.7.0</version>
 				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
+					<source>9</source>
+					<target>9</target>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.liquibase</groupId>
+				<artifactId>liquibase-maven-plugin</artifactId>
+				<version>${liquibase-maven-plugin.version}</version>
+				<configuration>
+					<propertyFileWillOverride>true</propertyFileWillOverride>
+					<propertyFile>src/main/resources/liquibase.properties</propertyFile>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>update</goal>
+						</goals>
+						<configuration>
+							<skip>true</skip>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
-
 	</build>
 </project>
