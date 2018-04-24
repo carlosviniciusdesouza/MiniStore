@@ -5,7 +5,7 @@
 	<groupId>com.carlos</groupId>
 	<artifactId>MiniStore</artifactId>
 	<packaging>war</packaging>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>0.0.3-ALPHA</version>
 	<name>MiniStore Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<properties>
@@ -18,8 +18,15 @@
 		<liquibase-core.version>3.5.3</liquibase-core.version>
 		<liquibase-maven-plugin.version>3.6.0</liquibase-maven-plugin.version>
 		<mysql.version>6.0.6</mysql.version>
+		<lombok-maven.version>1.16.20.0</lombok-maven.version>
 	</properties>
 	<dependencies>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok-maven</artifactId>
+			<version>${lombok-maven.version}</version>
+			<type>pom</type>
+		</dependency>
 		<dependency>
 			<groupId>org.liquibase</groupId>
 			<artifactId>liquibase-core</artifactId>
@@ -121,7 +128,8 @@
 				<artifactId>liquibase-maven-plugin</artifactId>
 				<version>${liquibase-maven-plugin.version}</version>
 				<configuration>
-					<propertyFile>src/main/resources/liquibase/liquibase.properties</propertyFile>
+					<propertyFileWillOverride>true</propertyFileWillOverride>
+					<propertyFile>src/main/resources/liquibase.properties</propertyFile>
 				</configuration>
 				<executions>
 					<execution>
