@@ -20,6 +20,12 @@ Give examples
 Give the example
 ```
 
+### Liquibase Update
+When necessary, the command to make maven run liquibase:
+
+ ```
+ - mvn liquibase:update
+```
 
 ```
 until finished
@@ -30,12 +36,11 @@ until finished
 
 ## Deployment
 
-### Liquibase Update
-
-When necessary, to make maven run liquibase the command is:
- - mvn liquibase:update
+ ```
 
 ## Built With
+
+
 
 * [Maven](https://maven.apache.org/) - Dependency Management
 
