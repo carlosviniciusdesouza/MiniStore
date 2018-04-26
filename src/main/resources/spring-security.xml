@@ -15,7 +15,7 @@
 	<authentication-manager>
 	  <authentication-provider>
 	    <user-service>
-		<user name="root" password="A665A45920422F9D417E4867EFDC4FB8A04A1F3FFF1FA07E998E86F7F7A27AE3" authorities="ROLE_ADMIN" /> </user-service>
+		<user name="root" password="BA7816BF8F01CFEA414140DE5DAE2223B00361A396177A9CB410FF61F20015AD" authorities="ROLE_ADMIN" /> </user-service>
 		<password-encoder ref="encoder" />
 	  </authentication-provider>
 	</authentication-manager>

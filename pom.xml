@@ -18,15 +18,8 @@
 		<liquibase-core.version>3.5.3</liquibase-core.version>
 		<liquibase-maven-plugin.version>3.6.0</liquibase-maven-plugin.version>
 		<mysql.version>6.0.6</mysql.version>
-		<lombok-maven.version>1.16.20.0</lombok-maven.version>
 	</properties>
 	<dependencies>
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok-maven</artifactId>
-			<version>${lombok-maven.version}</version>
-			<type>pom</type>
-		</dependency>
 		<dependency>
 			<groupId>org.liquibase</groupId>
 			<artifactId>liquibase-core</artifactId>
