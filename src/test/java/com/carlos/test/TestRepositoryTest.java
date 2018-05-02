@@ -13,7 +13,9 @@ import com.carlos.repository.TestRepository;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:spring-context.xml")
+@ContextConfiguration(locations = {
+		"classpath*:spring-context.xml",
+		"classpath*:spring-security.xml"})
 @Rollback
 @Transactional
 public class TestRepositoryTest {
@@ -24,7 +26,7 @@ public class TestRepositoryTest {
 	@Test
 	public void testeInsercaoOk() {
 		TestEntity test = new TestEntity();
-		test.setName("TESTE");
+		test.setName("TEST");
 		testRepository.save(test);
 		System.out.println(test.getId());
 		assertFalse(test.getId() == 0L);

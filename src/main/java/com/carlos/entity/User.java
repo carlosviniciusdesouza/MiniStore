@@ -1,5 +1,6 @@
 package com.carlos.entity;
 
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -13,9 +14,14 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "user")
-public class User{
+public class User implements UserDetails {
 
 	@Id 
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -23,19 +29,25 @@ public class User{
 	private Long id;
     
     @Column(name = "username", unique=true, length = 50, nullable = false)
-    private String name;
+    private String username;
     
     @Column(name = "password", length = 200, nullable = false)
-    private String senha;
+    private String password;
     
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "user_access_roles", 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_authorization", 
     	joinColumns = { @JoinColumn(name = "user_id") }, 
-    	inverseJoinColumns = { @JoinColumn(name = "role_id") })
-    private List<AccessRole> roles;
+    	inverseJoinColumns = { @JoinColumn(name = "authorization_id") })
+    private List<Authorization> authorizations;
 
 	public User() {
 		super();
+	}
+	
+	@Override
+	@JsonIgnore
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return this.authorizations;
 	}
 
 	public Long getId() {
@@ -46,29 +58,52 @@ public class User{
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
-	public String getSenha() {
-		return senha;
+	@JsonIgnore
+	public String getPassword() {
+		return password;
 	}
 
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
-	public List<AccessRole> getRoles() {
-		return roles;
+	public List<Authorization> getAuthorizations() {
+		return authorizations;
 	}
 
-	public void setRoles(List<AccessRole> roles) {
-		this.roles = roles;
+	public void setAuthorizations(List<Authorization> authorizations) {
+		this.authorizations = authorizations;
 	}
-    
-    
+
+	@Override
+	@JsonIgnore
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@Override
+	@JsonIgnore
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@Override
+	@JsonIgnore
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	@Override
+	@JsonIgnore
+	public boolean isEnabled() {
+		return true;
+	}
 }

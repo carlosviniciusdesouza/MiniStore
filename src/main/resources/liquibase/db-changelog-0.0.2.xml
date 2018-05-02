@@ -5,7 +5,7 @@
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
 	<changeSet id="1" author="Carlos Vinicius">
-		<createTable tableName="Test">
+		<createTable tableName="test">
 			<column name="testid" type="BIGINT" autoIncrement="true" >
 				<constraints primaryKey="true" nullable="false" />
 			</column>

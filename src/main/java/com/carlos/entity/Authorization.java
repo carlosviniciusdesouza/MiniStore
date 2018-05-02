@@ -7,24 +7,24 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.security.core.GrantedAuthority;
+
 
 
 @Entity
-@Table(name = "access_role")
+@Table(name = "authorization")
 
-public class AccessRole {
+public class Authorization implements GrantedAuthority {
 
 	@Id 
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name = "role_id")
+    @Column(name = "authorization_id")
 	private Long id;
     
-    @Column(name = "role_name", unique=true, length = 50, nullable = false)
+    @Column(name = "authorization_name", unique=true, length = 50, nullable = false)
     private String name;
-    
-    
 
-	public AccessRole() {
+	public Authorization() {
 		super();
 	}
 
@@ -43,6 +43,10 @@ public class AccessRole {
 	public void setName(String name) {
 		this.name = name;
 	}
-    
+
+	@Override
+	public String getAuthority() {
+		return this.name;
+	}
     
 }

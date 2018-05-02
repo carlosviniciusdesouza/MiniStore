@@ -23,6 +23,10 @@
 	<mvc:annotation-driven />
 	<tx:annotation-driven />
 	<jpa:repositories base-package="com.carlos.repository" />
+	<mvc:cors>
+		<mvc:mapping path="/**" allowed-methods="*"
+			allowed-headers="*" exposed-headers="Token" max-age="3600" />
+	</mvc:cors>
 
 	<!-- Properties file at src/main/resourcer/application.properties-->
 	<bean id="databaseProperties" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
@@ -56,14 +60,4 @@
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
 	
-	<bean
-	  class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-	  <property name="prefix">
-		<value>/WEB-INF/</value>
-	  </property>
-	  <property name="suffix">
-		<value>.jsp</value>
-	  </property>
-	</bean>
-
 </beans>
