@@ -20,13 +20,13 @@ public class JwtUtils {
     
     public static String generateToken(User user) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
-        String usuarioJson = mapper.writeValueAsString(user);
-        Date agora = new Date();
-        Long hora = 1000L * 60L * 60L;
-        return Jwts.builder().claim("userDetails", usuarioJson)
+        String userJson = mapper.writeValueAsString(user);
+        Date now = new Date();
+        Long hour = 1000L * 60L * 60L;
+        return Jwts.builder().claim("userDetails", userJson)
             .setIssuer("com.carlos")
             .setSubject(user.getUsername())
-            .setExpiration(new Date(agora.getTime() + hora))
+            .setExpiration(new Date(now.getTime() + hour))
             .signWith(SignatureAlgorithm.HS512, secretKey)
             .compact();
     }
