@@ -10,7 +10,7 @@
 
 	<sec:global-method-security
 		pre-post-annotations="enabled" />
-
+		
 	<sec:http entry-point-ref="restAuthenticationEntryPoint"
 		create-session="stateless">
 		<sec:csrf disabled="true" />

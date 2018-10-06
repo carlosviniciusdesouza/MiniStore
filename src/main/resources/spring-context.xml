@@ -19,7 +19,8 @@
         http://www.springframework.org/schema/osgi
         http://www.springframework.org/schema/osgi/spring-osgi.xsd">
 
-	<context:component-scan base-package="com.carlos" />
+	<context:component-scan
+		base-package="com.carlos" />
 	<mvc:annotation-driven />
 	<tx:annotation-driven />
 	<jpa:repositories base-package="com.carlos.repository" />
@@ -28,17 +29,21 @@
 			allowed-headers="*" exposed-headers="Token" max-age="3600" />
 	</mvc:cors>
 
-	<!-- Properties file at src/main/resourcer/application.properties-->
-	<bean id="databaseProperties" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="location" value="classpath:application.properties" />
+	<!-- Properties file at src/main/resourcer/application.properties -->
+	<bean id="databaseProperties"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location"
+			value="classpath:application.properties" />
 	</bean>
 
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="${database.driver}" />
 		<property name="url" value="${database.url}" />
-		<property name="username" value="${database.credentials.username}" />
-		<property name="password" value="${database.credentials.password}" />
+		<property name="username"
+			value="${database.credentials.username}" />
+		<property name="password"
+			value="${database.credentials.password}" />
 	</bean>
 
 	<bean id="entityManagerFactory"
@@ -47,8 +52,10 @@
 		<property name="jpaVendorAdapter">
 			<bean
 				class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-				<property name="generateDdl" value="${database.entityManager.generateddl}" />
-				<property name="showSql" value="${database.entityManager.showsql}" />
+				<property name="generateDdl"
+					value="${database.entityManager.generateddl}" />
+				<property name="showSql"
+					value="${database.entityManager.showsql}" />
 				<property name="databasePlatform"
 					value="${database.entityManager.databaseplatform}" />
 			</bean>
@@ -57,7 +64,8 @@
 
 	<bean id="transactionManager"
 		class="org.springframework.orm.jpa.JpaTransactionManager">
-		<property name="entityManagerFactory" ref="entityManagerFactory" />
+		<property name="entityManagerFactory"
+			ref="entityManagerFactory" />
 	</bean>
-	
+
 </beans>

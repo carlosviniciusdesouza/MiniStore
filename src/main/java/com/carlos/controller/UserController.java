@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -54,7 +55,6 @@ public class UserController {
 		return user;
 	}
 	
-	//@ResponseStatus(value=HttpStatus.CONFLICT, reason="Data integrity violation")  // 409
 	@ExceptionHandler(IllegalArgumentException.class)
 	public String conflict(Exception ex, HttpServletResponse response) {
 		//TODO a proper exception handling

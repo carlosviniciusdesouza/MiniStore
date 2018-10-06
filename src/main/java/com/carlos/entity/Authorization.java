@@ -9,6 +9,8 @@ import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 
 @Entity
@@ -28,6 +30,7 @@ public class Authorization implements GrantedAuthority {
 		super();
 	}
 
+	@JsonIgnore
 	public Long getId() {
 		return id;
 	}
@@ -36,6 +39,7 @@ public class Authorization implements GrantedAuthority {
 		this.id = id;
 	}
 
+	@JsonIgnore
 	public String getName() {
 		return name;
 	}
