@@ -39,7 +39,7 @@ public class UserController {
 	public void setAuth(AuthenticationManager auth) {
 		this.auth = auth;
 	}
-
+	
 	@RequestMapping(path = "/login", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public User login(@RequestBody Login login, HttpServletResponse response) throws JsonProcessingException {
 		Authentication credentials = new UsernamePasswordAuthenticationToken(login.getUsername(), login.getPassword());
