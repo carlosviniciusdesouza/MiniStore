@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService{
 		
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(12);
 		
-		Authorization authorizationUser = authorizationRepository.findFirstByName(ROLE_USER);
+		Authorization authorizationUser = authorizationRepository.findFirstByAuthority(ROLE_USER);
 
 		List<Authorization> list = new ArrayList<Authorization>();
 		list.add(authorizationUser);

@@ -14,6 +14,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import org.springframework.data.annotation.Transient;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -50,6 +51,11 @@ public class User implements UserDetails {
 		return this.authorizations;
 	}
 
+
+	public List<Authorization> getAuthorizations() {
+		return authorizations;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -73,10 +79,6 @@ public class User implements UserDetails {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public List<Authorization> getAuthorizations() {
-		return authorizations;
 	}
 
 	public void setAuthorizations(List<Authorization> authorizations) {
