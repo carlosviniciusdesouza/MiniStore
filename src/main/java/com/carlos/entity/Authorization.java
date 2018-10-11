@@ -6,16 +6,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
 import org.springframework.security.core.GrantedAuthority;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-
 
 @Entity
 @Table(name = "authorization")
-
 public class Authorization implements GrantedAuthority {
 
 	@Id 
@@ -24,13 +18,12 @@ public class Authorization implements GrantedAuthority {
 	private Long id;
     
     @Column(name = "authorization_name", unique=true, length = 50, nullable = false)
-    private String name;
+    private String authority; //Never change the name of this field
 
 	public Authorization() {
 		super();
 	}
 
-	@JsonIgnore
 	public Long getId() {
 		return id;
 	}
@@ -39,18 +32,12 @@ public class Authorization implements GrantedAuthority {
 		this.id = id;
 	}
 
-	@JsonIgnore
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	@Override
 	public String getAuthority() {
-		return this.name;
+		return this.authority;
 	}
     
+	public void setAuthority(String authority) {
+		this.authority = authority;
+	}
 }

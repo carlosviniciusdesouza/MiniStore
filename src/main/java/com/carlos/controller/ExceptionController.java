@@ -5,15 +5,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @ControllerAdvice
 public class ExceptionController {
 	
 	@ExceptionHandler(IllegalArgumentException.class)
+	@ResponseBody
 	public ResponseEntity<ExceptionResponse> conflict(Exception ex) {
 		//TODO a proper exception handling
 		ExceptionResponse responseObject = new ExceptionResponse(ex.getMessage());
-		System.out.println(ex.getMessage());
 		return new ResponseEntity<ExceptionResponse>(responseObject, HttpStatus.CONFLICT);
 	}
 }
