@@ -27,8 +27,10 @@ When necessary, the command to make maven run liquibase:
  - mvn liquibase:update
 ```
 
-```
-until finished
+Before anything, you can clean the Database and drop all tables before running for the first time:
+
+ ```
+ - mvn liquibase:dropAll
 ```
 
 ## Running the tests
