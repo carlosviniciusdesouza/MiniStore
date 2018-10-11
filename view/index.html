@@ -11,18 +11,25 @@
 	  var xhttp = new XMLHttpRequest();
 	  xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-		 document.getElementById("demo").innerHTML = this.responseText;
+		 document.getElementById("token").innerHTML = this.getResponseHeader("Token");
 		}
 	  };
 	  xhttp.open("POST", "http://localhost:8080/MiniStore/login", true);
 	  xhttp.setRequestHeader( 'Content-Type', 'application/json' );
-	  xhttp.send('{"username":"admin", "password":"admin"}');
+	  var usernameString = document.querySelector('#username').value;
+	  var passwordString = document.querySelector('#password').value;
+	  xhttp.send(JSON.stringify({username:usernameString, password:passwordString}));
 	}
 </script>
 
-<div id="demo">
-  <h2>Let AJAX change this text</h2>
-  <button type="button" onclick="loadDoc()">Change Content</button>
+<div>
+  <h2>Login</h2>
+  <form>
+  First name: <input type="text" id="username"><br>
+  Last name: <input type="password" id="password"><br>
+  <button type="button" onclick="loadDoc()">Login</button>
+  </form>
+  <p id="token"></p>
 </div>
 
 
