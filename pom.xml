@@ -5,7 +5,7 @@
 	<groupId>com.carlos</groupId>
 	<artifactId>MiniStore</artifactId>
 	<packaging>war</packaging>
-	<version>0.0.4-ALPHA</version>
+	<version>0.1.1-ALPHA</version>
 	<name>MiniStore Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<properties>
