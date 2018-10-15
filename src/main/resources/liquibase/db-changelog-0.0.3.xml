@@ -7,7 +7,7 @@
 	<changeSet id="2" author="Carlos Vinicius">
 	
 		<createTable tableName="user">
-			<column name="user_id" type="BIGINT" autoIncrement="true" >
+			<column name="id" type="BIGINT" autoIncrement="true" >
 				<constraints primaryKey="true" nullable="false" />
 			</column>
 			<column name="username" type="varchar(50)">
@@ -19,10 +19,10 @@
 			
 		</createTable>
 		<createTable tableName="authorization">
-			<column name="authorization_id" type="BIGINT" autoIncrement="true" >
+			<column name="id" type="BIGINT" autoIncrement="true" >
 				<constraints primaryKey="true" nullable="false" />
 			</column>
-			<column name="authorization_name" type="varchar(50)">
+			<column name="name" type="varchar(50)">
 				<constraints nullable="false" unique="true" />
 			</column>
 		</createTable>
@@ -42,7 +42,7 @@
             constraintName="fk_user"
             onDelete="CASCADE"
             onUpdate="RESTRICT"
-            referencedColumnNames="user_id"
+            referencedColumnNames="id"
             referencedTableName="user"/>
             
         <addForeignKeyConstraint 
@@ -51,7 +51,7 @@
             constraintName="fk_authorization"
             onDelete="CASCADE"
             onUpdate="RESTRICT"
-            referencedColumnNames="authorization_id"
+            referencedColumnNames="id"
             referencedTableName="authorization"/>
 	</changeSet>
 </databaseChangeLog>

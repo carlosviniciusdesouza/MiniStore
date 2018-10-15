@@ -14,10 +14,10 @@ public class Authorization implements GrantedAuthority {
 
 	@Id 
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name = "authorization_id")
+    @Column(name = "id")
 	private Long id;
     
-    @Column(name = "authorization_name", unique=true, length = 50, nullable = false)
+    @Column(name = "name", unique=true, length = 50, nullable = false)
     private String authority; //Never change the name of this field
 
 	public Authorization() {
