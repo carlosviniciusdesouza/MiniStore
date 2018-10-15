@@ -16,40 +16,39 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-
-import com.carlos.entity.User;
+import com.carlos.entity.Username;
 import com.carlos.security.JwtUtils;
 import com.carlos.security.Login;
-import com.carlos.service.UserService;
+import com.carlos.service.UsernameService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-public class UserController {
+public class UsernameController {
 
 	@Autowired
 	@Qualifier("authenticationManager")
 	private AuthenticationManager auth;
 
 	@Autowired
-	private UserService userService;
+	private UsernameService userService;
 	
 	public void setAuth(AuthenticationManager auth) {
 		this.auth = auth;
 	}
 	
 	@RequestMapping(path = "/login", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public User login(@RequestBody Login login, HttpServletResponse response) throws JsonProcessingException {
+	public Username login(@RequestBody Login login, HttpServletResponse response) throws JsonProcessingException {
 		Authentication credentials = new UsernamePasswordAuthenticationToken(login.getUsername(), login.getPassword());
-		User user = (User) auth.authenticate(credentials).getPrincipal();
+		Username user = (Username) auth.authenticate(credentials).getPrincipal();
 		user.setPassword(null);
 		response.setHeader("Token", JwtUtils.generateToken(user));
 		return user;
 	}
 	
 	@RequestMapping(path = "/register", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public User register(@RequestBody Login login, HttpServletResponse response) throws IllegalArgumentException {
-		User user = userService.register(login.getUsername(), login.getPassword());
+	public Username register(@RequestBody Login login, HttpServletResponse response) throws IllegalArgumentException {
+		Username user = userService.register(login.getUsername(), login.getPassword());
 		return user;
 	}
 	

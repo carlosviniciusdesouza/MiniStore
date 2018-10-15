@@ -6,22 +6,22 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.carlos.entity.User;
-import com.carlos.repository.UserRepository;
+import com.carlos.entity.Username;
+import com.carlos.repository.UsernameRepository;
 
 @Service("securityService")
 public class SecurityServiceImpl implements UserDetailsService {
 	
 	@Autowired
-	private UserRepository userRepository;
+	private UsernameRepository userRepository;
 
-	public void setUserRepository(UserRepository userRepository) {
+	public void setUserRepository(UsernameRepository userRepository) {
 		this.userRepository = userRepository;
 	}
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		User user = userRepository.findByUsername(username);
+		Username user = userRepository.findByUsername(username);
 		if(user == null) {
 			throw new UsernameNotFoundException(username);
 		}

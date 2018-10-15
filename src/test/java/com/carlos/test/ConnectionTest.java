@@ -11,8 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import com.carlos.entity.User;
-import com.carlos.repository.UserRepository;
+import com.carlos.entity.Username;
+import com.carlos.repository.UsernameRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
@@ -24,15 +24,15 @@ import com.carlos.repository.UserRepository;
 public class ConnectionTest {
 	
 	@Autowired
-	private UserRepository userRepository;
+	private UsernameRepository userRepository;
 	
 	@Test
 	public void connectionDatabaseTest() {
-		User test = new User();
+		Username test = new Username();
 		test.setUsername("TEST");
 		test.setPassword("TEST");
 		userRepository.save(test);
-		User found = userRepository.findByUsername("TEST");
+		Username found = userRepository.findByUsername("TEST");
 		assertThat(found.getUsername(), equalTo(test.getUsername()));
 	}
 

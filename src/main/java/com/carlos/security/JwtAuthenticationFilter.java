@@ -15,7 +15,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.GenericFilterBean;
 
-import com.carlos.entity.User;
+import com.carlos.entity.Username;
 
 public class JwtAuthenticationFilter extends GenericFilterBean {
 
@@ -28,7 +28,7 @@ public class JwtAuthenticationFilter extends GenericFilterBean {
             HttpServletRequest servletRequest = (HttpServletRequest) request;
             String authorization = servletRequest.getHeader(tokenHeader);
             if (authorization != null) {
-            	User user = JwtUtils.parseToken(authorization);
+            	Username user = JwtUtils.parseToken(authorization);
                 Authentication credentials = new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword(), user.getAuthorities());
                 SecurityContextHolder.getContext().setAuthentication(credentials);
             }
