@@ -1,34 +1,17 @@
 package com.carlos.test;
 
-
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
-
-import java.sql.Connection;
-import java.util.Arrays;
-import java.util.List;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnitRunner;
-
 import com.carlos.entity.Purchase;
 import com.carlos.repository.PurchaseRepository;
 import com.carlos.service.PurchaseServiceImpl;
-
-import liquibase.Contexts;
-import liquibase.LabelExpression;
-import liquibase.Liquibase;
-import liquibase.database.Database;
-import liquibase.database.DatabaseFactory;
-import liquibase.database.jvm.JdbcConnection;
-import liquibase.exception.LiquibaseException;
-import liquibase.resource.ClassLoaderResourceAccessor;
 
 @RunWith(MockitoJUnitRunner.class)
 public class PurchaseTest {
@@ -43,6 +26,8 @@ public class PurchaseTest {
 	public void setup(){
 		MockitoAnnotations.initMocks(this);
 	}
+	
+	//TODO create tests on production too, H2.
 
 	@Test
 	public void connectionDatabaseTest() {
@@ -55,8 +40,8 @@ public class PurchaseTest {
 		purchaseRepository.save(Purchase2);
 		purchaseRepository.save(Purchase3);
 
-		when(purchaseRepository.count()).thenReturn(5l);
-		assertEquals(5l, purchaseService.countPurchaseTotal());
+		when(purchaseRepository.count()).thenReturn(3l);
+		assertEquals(3l, purchaseService.countPurchaseTotal());
 	}
 
 }
