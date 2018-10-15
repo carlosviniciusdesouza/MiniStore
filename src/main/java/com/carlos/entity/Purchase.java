@@ -2,6 +2,8 @@ package com.carlos.entity;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -36,14 +38,14 @@ public class Purchase {
 
 	@Column(name = "purchaseDate", nullable = false, updatable = false)
 	@Temporal(TemporalType.DATE)
-	private LocalDate purchaseDate;
+	private Calendar purchaseDate;
 
 	@OneToMany(
 			mappedBy = "purchase", 
 			cascade = CascadeType.ALL, 
 			orphanRemoval = true
 			)
-	private ArrayList<PurchaseProduct> purchaseProduct = new ArrayList<PurchaseProduct>();
+	private List<PurchaseProduct> purchaseProduct;
 
 	public Long getEmployeeId() {
 		return employeeId;
@@ -77,11 +79,11 @@ public class Purchase {
 		this.price = price;
 	}
 
-	public LocalDate getPurchaseDate() {
+	public Calendar getPurchaseDate() {
 		return purchaseDate;
 	}
 
-	public void setPurchaseDate(LocalDate purchaseDate) {
+	public void setPurchaseDate(Calendar purchaseDate) {
 		this.purchaseDate = purchaseDate;
 	}
 
@@ -89,7 +91,7 @@ public class Purchase {
 		return id;
 	}
 
-	public ArrayList<PurchaseProduct> getPurchaseProduct() {
+	public List<PurchaseProduct> getPurchaseProduct() {
 		return purchaseProduct;
 	}
 

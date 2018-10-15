@@ -8,24 +8,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.carlos.entity.User;
+import com.carlos.entity.Username;
 import com.carlos.entity.Authorization;
 import com.carlos.repository.AuthorizationRepository;
-import com.carlos.repository.UserRepository;
+import com.carlos.repository.UsernameRepository;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UsernameServiceImpl implements UsernameService{
 	
 	private static final String ROLE_USER = "ROLE_USER";
 	
 	@Autowired
-	private UserRepository userRepository;
+	private UsernameRepository userRepository;
 	
 	@Autowired
 	private AuthorizationRepository authorizationRepository;
 	
 	@Override
-	public User register(String login, String password) throws IllegalArgumentException{
+	public Username register(String login, String password) throws IllegalArgumentException{
 		if(userRepository.findByUsername(login) != null){
 			throw new IllegalArgumentException("O Usuário já existe");
 		};
@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService{
 		List<Authorization> list = new ArrayList<Authorization>();
 		list.add(authorizationUser);
 		
-		User usuario = new User();
+		Username usuario = new Username();
 		usuario.setUsername(login);
 		usuario.setPassword(passwordEncoder.encode(password));
 		usuario.setAuthorizations(list);

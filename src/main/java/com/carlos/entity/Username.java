@@ -21,8 +21,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "user")
-public class User implements UserDetails {
+@Table(name = "username")
+public class Username implements UserDetails {
 
 	@Id 
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -36,12 +36,12 @@ public class User implements UserDetails {
     private String password;
     
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "user_authorization", 
-    	joinColumns = { @JoinColumn(name = "user_id") }, 
+    @JoinTable(name = "username_authorization", 
+    	joinColumns = { @JoinColumn(name = "username_id") }, 
     	inverseJoinColumns = { @JoinColumn(name = "authorization_id") })
     private List<Authorization> authorizations;
 
-	public User() {
+	public Username() {
 		super();
 	}
 	

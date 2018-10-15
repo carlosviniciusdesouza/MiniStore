@@ -3,11 +3,11 @@ package com.carlos.repository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.carlos.entity.User;
+import com.carlos.entity.Username;
 
 @Repository
-public interface UserRepository extends CrudRepository<User, Long>{
+public interface UsernameRepository extends CrudRepository<Username, Long>{
 	
-	public User findByUsername(String username);
+	public Username findByUsername(String username);
 
 }

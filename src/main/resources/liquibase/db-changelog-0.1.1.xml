@@ -6,7 +6,7 @@
 
 	<changeSet id="5" author="Carlos Vinicius">
 
-		<createTable tableName="product">
+		<createTable tableName="product" schemaName="ministore">
 			<column name="id" type="BIGINT" autoIncrement="true">
 				<constraints primaryKey="true" nullable="false" />
 			</column>
@@ -23,7 +23,7 @@
 				<constraints nullable="false" />
 			</column>
 		</createTable>
-		<createTable tableName="customer">
+		<createTable tableName="customer" schemaName="ministore">
 			<column name="id" type="BIGINT" autoIncrement="true">
 				<constraints primaryKey="true" nullable="false" />
 			</column>
@@ -41,7 +41,7 @@
 			</column>
 			<column name="address" type="varchar(80)" />
 		</createTable>
-		<createTable tableName="employee">
+		<createTable tableName="employee" schemaName="ministore">
 			<column name="id" type="BIGINT" autoIncrement="true">
 				<constraints primaryKey="true" nullable="false" />
 			</column>
@@ -62,7 +62,7 @@
 				<constraints nullable="false" />
 			</column>
 		</createTable>
-		<createTable tableName="purchase">
+		<createTable tableName="purchase"  schemaName="ministore">
 			<column name="id" type="BIGINT" autoIncrement="true">
 				<constraints primaryKey="true" nullable="false" />
 			</column>
@@ -81,7 +81,7 @@
 				<constraints nullable="false" />
 			</column>
 		</createTable>
-		<createTable tableName="purchase_product">
+		<createTable tableName="purchase_product"  schemaName="ministore">
 			<column name="purchase_id" type="BIGINT">
 				<constraints nullable="false" />
 			</column>

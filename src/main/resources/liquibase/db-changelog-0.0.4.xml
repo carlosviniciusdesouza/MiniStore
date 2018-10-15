@@ -5,7 +5,7 @@
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
 	<changeSet id="3" author="Carlos Vinicius">
-		<insert tableName="user">
+		<insert tableName="username">
 			<column name="id">1</column>
 			<column name="username">admin</column>
 			<column name="password">$2a$12$Xsc5CCXZiC8gfkSbRWkt.OrdZ9ew6U9Ju/UYoE9rPVz58NgDlJTr6</column>
@@ -18,12 +18,12 @@
 			<column name="id">2</column>
 			<column name="name">ROLE_ADMIN</column>
 		</insert>
-		<insert tableName="user_authorization">
-			<column name="user_id">1</column>
+		<insert tableName="username_authorization">
+			<column name="username_id">1</column>
 			<column name="authorization_id">1</column>
 		</insert>
-		<insert tableName="user_authorization">
-			<column name="user_id">1</column>
+		<insert tableName="username_authorization">
+			<column name="username_id">1</column>
 			<column name="authorization_id">2</column>
 		</insert>
 	</changeSet>

@@ -6,7 +6,7 @@
 
 	<changeSet id="2" author="Carlos Vinicius">
 	
-		<createTable tableName="user">
+		<createTable tableName="username"  schemaName="ministore">
 			<column name="id" type="BIGINT" autoIncrement="true" >
 				<constraints primaryKey="true" nullable="false" />
 			</column>
@@ -18,7 +18,7 @@
 			</column>
 			
 		</createTable>
-		<createTable tableName="authorization">
+		<createTable tableName="authorization"  schemaName="ministore">
 			<column name="id" type="BIGINT" autoIncrement="true" >
 				<constraints primaryKey="true" nullable="false" />
 			</column>
@@ -27,8 +27,8 @@
 			</column>
 		</createTable>
 		
-		<createTable tableName="user_authorization">
-			<column name="user_id" type="BIGINT" >
+		<createTable tableName="username_authorization"  schemaName="ministore">
+			<column name="username_id" type="BIGINT" >
 				<constraints primaryKey="true" nullable="false" />
 			</column>
 			<column name="authorization_id" type="BIGINT">
@@ -37,17 +37,17 @@
 		</createTable>
 		
 		<addForeignKeyConstraint 
-			baseColumnNames="user_id"
-            baseTableName="user_authorization"
-            constraintName="fk_user"
+			baseColumnNames="username_id"
+            baseTableName="username_authorization"
+            constraintName="fk_userusername"
             onDelete="CASCADE"
             onUpdate="RESTRICT"
             referencedColumnNames="id"
-            referencedTableName="user"/>
+            referencedTableName="username"/>
             
         <addForeignKeyConstraint 
 			baseColumnNames="authorization_id"
-            baseTableName="user_authorization"
+            baseTableName="username_authorization"
             constraintName="fk_authorization"
             onDelete="CASCADE"
             onUpdate="RESTRICT"

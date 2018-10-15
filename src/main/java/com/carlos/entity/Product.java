@@ -1,6 +1,7 @@
 package com.carlos.entity;
 
 import java.time.LocalDate;
+import java.util.Calendar;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,24 +15,24 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "product")
 public class Product {
-	@Id 
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name = "id")
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private Long id;
-	
-	@Column(name = "name", unique=true, length = 50, nullable = false)
+
+	@Column(name = "name", unique = true, length = 50, nullable = false)
 	private String name;
-	
+
 	@Column(name = "type", length = 50)
 	private String type;
-	
+
 	@Column(name = "price", nullable = false)
 	private double price;
-	
+
 	@Column(name = "registrationDate", nullable = false, updatable = false)
 	@Temporal(TemporalType.DATE)
-	private LocalDate registrationDate;
-	
+	private Calendar registrationDate;
+
 	@Column(name = "inventory", nullable = false)
 	private int inventory;
 
@@ -59,11 +60,11 @@ public class Product {
 		this.price = price;
 	}
 
-	public LocalDate getRegistrationDate() {
+	public Calendar getRegistrationDate() {
 		return registrationDate;
 	}
 
-	public void setRegistrationDate(LocalDate registrationDate) {
+	public void setRegistrationDate(Calendar registrationDate) {
 		this.registrationDate = registrationDate;
 	}
 

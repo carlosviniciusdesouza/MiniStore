@@ -1,6 +1,6 @@
 package com.carlos.entity;
 
-import java.time.LocalDate;
+import java.util.Calendar;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,11 +30,67 @@ public class Employee {
 	
 	@Column(name = "registrationDate", nullable = false, updatable = false)
 	@Temporal(TemporalType.DATE)
-	private LocalDate registrationDate;
+	private Calendar registrationDate;
 	
 	@Column(name = "username", length = 80)
 	private String address;
 	
 	@Column(name = "salary", nullable = false)
 	private double salary;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Calendar getRegistrationDate() {
+		return registrationDate;
+	}
+
+	public void setRegistrationDate(Calendar registrationDate) {
+		this.registrationDate = registrationDate;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public double getSalary() {
+		return salary;
+	}
+
+	public void setSalary(double salary) {
+		this.salary = salary;
+	}
 }

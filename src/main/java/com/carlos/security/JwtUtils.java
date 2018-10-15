@@ -7,7 +7,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import java.io.IOException;
 import java.util.Date;
 
-import com.carlos.entity.User;
+import com.carlos.entity.Username;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -19,7 +19,7 @@ public class JwtUtils {
     
     private static final String secretKey = "spring.jwt.sec";
     
-    public static String generateToken(User user) throws JsonProcessingException {
+    public static String generateToken(Username user) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
         String userJson = mapper.writeValueAsString(user);
         Date now = new Date();
@@ -32,14 +32,14 @@ public class JwtUtils {
             .compact();
     }
     
-    public static User parseToken(String token) throws JsonParseException, JsonMappingException, IOException {
+    public static Username parseToken(String token) throws JsonParseException, JsonMappingException, IOException {
         ObjectMapper mapper = new ObjectMapper();
         Claims claims = Jwts.parser()
         		.setSigningKey(secretKey)
         		.parseClaimsJws(token)
         		.getBody();
         String credentialsJson = claims.get("userDetails", String.class);
-        return mapper.readValue(credentialsJson, User.class);
+        return mapper.readValue(credentialsJson, Username.class);
     }
 
 }
