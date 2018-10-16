@@ -16,12 +16,11 @@ import com.carlos.repository.UsernameRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
-		"classpath*:spring-context.xml",
-		"classpath*:spring-security.xml"})
+		"classpath*:test/spring-context.xml",
+		"classpath*:test/spring-security.xml"})
 @Rollback
 @Transactional
-@Ignore
-public class ConnectionTest {
+public class ConnectionTest extends AbstractDatabaseTest{
 	
 	@Autowired
 	private UsernameRepository userRepository;
