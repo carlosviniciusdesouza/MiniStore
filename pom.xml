@@ -118,15 +118,10 @@
 			<version>${spring-data-jpa.version}</version>
 		</dependency>
 		<dependency>
-    		<groupId>com.h2database</groupId>
-    		<artifactId>h2</artifactId>
-    		<version>${h2.version}</version>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>${h2.version}</version>
 		</dependency>
-		<!-- <dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>${mysql.version}</version>
-		</dependency> -->
 		<dependency>
 			<groupId>org.hamcrest</groupId>
 			<artifactId>hamcrest-library</artifactId>
@@ -147,7 +142,7 @@
 	</repositories>
 	<build>
 		<finalName>MiniStore</finalName>
-		<plugins>
+		<plugins>		
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>

@@ -13,8 +13,8 @@ import com.carlos.entity.Purchase;
 import com.carlos.repository.PurchaseRepository;
 import com.carlos.service.PurchaseServiceImpl;
 
-@RunWith(MockitoJUnitRunner.class)
-public class PurchaseTest {
+@RunWith(MockitoJUnitRunner.class) 
+public class PurchaseTest extends AbstractDatabaseTest{
 
 	@InjectMocks
 	private PurchaseServiceImpl purchaseService;

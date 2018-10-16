@@ -1,22 +1,15 @@
-/**
- * 
- */
 package com.carlos.test;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-import org.junit.AfterClass;
 import org.junit.BeforeClass;
 
 import liquibase.Liquibase;
-import org.h2.Driver;
-
 import liquibase.database.Database;
 import liquibase.database.core.H2Database;
 import liquibase.database.jvm.JdbcConnection;
 import liquibase.resource.ClassLoaderResourceAccessor;
-import liquibase.resource.FileSystemResourceAccessor;
 import liquibase.resource.ResourceAccessor;
 
 /**
@@ -24,7 +17,6 @@ import liquibase.resource.ResourceAccessor;
  *
  * Before every test that may inlude a setup connection with a database, the test class must extend this Abstract Class
  */
-
 public abstract class AbstractDatabaseTest {
 	
 	private static final String JBDC_DRIVER = "org.h2.Driver";
@@ -36,13 +28,15 @@ public abstract class AbstractDatabaseTest {
     private static Connection holdingConnection;
     private static Liquibase liquibase;
     private static Database database;
+    
+    private static boolean isDatabaseUpdated = false;
 
 	/**
 	 * Setup made with Liquibase
 	 */
-	@BeforeClass
-	public static void setupDatabase() {
-        try {
+    @BeforeClass
+	public static void runLiquibase() {
+        if(!isDatabaseUpdated)try {
         	ResourceAccessor resourceAccessor = new ClassLoaderResourceAccessor();
         	Class.forName(JBDC_DRIVER);
         	holdingConnection = DriverManager.getConnection(CONNECTION_STRING, USER_NAME, PASSWORD);
@@ -51,13 +45,9 @@ public abstract class AbstractDatabaseTest {
             liquibase = new Liquibase(CHANGE_LOG, resourceAccessor, database);
             liquibase.update("test");
             database.close();
+            isDatabaseUpdated = true;
         } catch (Exception ex) {
             throw new RuntimeException("Error during database initialization", ex);
         }
 	}
-	@AfterClass
-	public static void closeTestSuite() {
-
-	}
-
 }
