@@ -32,11 +32,22 @@ public class Employee {
 	@Temporal(TemporalType.DATE)
 	private Calendar registrationDate;
 	
-	@Column(name = "username", length = 80)
+	@Column(name = "address", length = 80)
 	private String address;
 	
 	@Column(name = "salary", nullable = false)
 	private double salary;
+	
+	public Employee(String firstName, String lastName, String email, double salary) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.salary = salary;
+		registrationDate = Calendar.getInstance();
+	}
+	
+	public Employee() {
+	}
 
 	public Long getId() {
 		return id;

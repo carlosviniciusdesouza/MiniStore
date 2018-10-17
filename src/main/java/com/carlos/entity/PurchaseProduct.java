@@ -1,7 +1,5 @@
 package com.carlos.entity;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -18,11 +16,11 @@ public class PurchaseProduct{
 	private PurchaseProductId id;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@MapsId("purchaseId")//TODO must give error, change to "productId or something
+	@MapsId("purchaseId")
 	private Purchase purchase;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@MapsId("productId")//TODO must give error, change to "productId or something
+	@MapsId("productId")
 	private Product product;
 
 	@Column(name = "quantity")

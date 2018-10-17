@@ -11,9 +11,9 @@
 	<properties>
 		<jdk.version>1.9</jdk.version>
 		<junit.version>4.12</junit.version>
-		<spring.version>5.0.5.RELEASE</spring.version>
+		<spring.version>5.1.1.RELEASE</spring.version>
 		<hibernate.version>5.2.12.Final</hibernate.version>
-		<spring-security.version>5.0.4.RELEASE</spring-security.version>
+		<spring-security.version>5.1.1.RELEASE</spring-security.version>
 		<spring-data-jpa.version>2.0.6.RELEASE</spring-data-jpa.version>
 		<liquibase-core.version>3.5.3</liquibase-core.version>
 		<liquibase-maven-plugin.version>3.6.0</liquibase-maven-plugin.version>

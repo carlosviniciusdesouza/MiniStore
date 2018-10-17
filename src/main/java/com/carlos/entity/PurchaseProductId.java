@@ -8,6 +8,11 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class PurchaseProductId implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6609777133719864217L;
+
 	@Column(name = "purchase_id")
 	private Long purchaseId;
 
