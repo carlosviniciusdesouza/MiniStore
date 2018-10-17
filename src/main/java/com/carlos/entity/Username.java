@@ -14,7 +14,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import org.springframework.data.annotation.Transient;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -23,6 +22,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name = "username")
 public class Username implements UserDetails {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -847076378320633082L;
 
 	@Id 
     @GeneratedValue(strategy=GenerationType.IDENTITY)

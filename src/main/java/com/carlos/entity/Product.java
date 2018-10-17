@@ -1,6 +1,5 @@
 package com.carlos.entity;
 
-import java.time.LocalDate;
 import java.util.Calendar;
 
 import javax.persistence.Column;
@@ -35,6 +34,16 @@ public class Product {
 
 	@Column(name = "inventory", nullable = false)
 	private int inventory;
+	
+	public Product(String name, double price, int inventory) {
+		this.name = name;
+		this.price = price;
+		this.inventory = inventory;
+		registrationDate = Calendar.getInstance();
+	}
+
+	public Product() {
+	}
 
 	public String getName() {
 		return name;

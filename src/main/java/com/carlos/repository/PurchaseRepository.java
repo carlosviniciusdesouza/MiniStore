@@ -6,4 +6,6 @@ import com.carlos.entity.Purchase;
 
 public interface PurchaseRepository  extends CrudRepository<Purchase, Long>{
 
+	public Purchase findByCustomerIdAndEmployeeId(Long customerId, Long employeeId );
+
 }

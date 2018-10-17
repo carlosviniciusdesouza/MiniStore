@@ -33,7 +33,7 @@
 	<bean id="databaseProperties"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="location"
-			value="classpath:application.properties" />
+			value="classpath:test/application.properties" />
 	</bean>
 
 	<bean id="dataSource"
@@ -66,11 +66,6 @@
 		class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory"
 			ref="entityManagerFactory" />
-	</bean>
-
-	<bean id="stringHttpMessageConverter"
-		class="org.springframework.http.converter.StringHttpMessageConverter">
-		<constructor-arg value="UTF-8" />
 	</bean>
 
 </beans>

@@ -1,5 +1,5 @@
 package com.carlos.service;
 
-public interface PurchaseService {
+public interface CustomerService {
 
 }

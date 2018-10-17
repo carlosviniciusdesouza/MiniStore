@@ -1,10 +1,9 @@
 package com.carlos.controller;
 
 import java.time.ZonedDateTime;
-
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/errors")
 public class ErrorController {
-
 	
 	private static final String UNAUTHORIZED = "Unauthorized"; //TODO resource file
 	private static final String FORBIDDEN = "Forbidden";

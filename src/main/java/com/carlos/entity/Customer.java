@@ -30,10 +30,20 @@ public class Customer {
 	
 	@Column(name = "registrationDate", nullable = false, updatable = false)
 	@Temporal(TemporalType.DATE)
-	private Calendar registrationDate; //TODO change to LocalDate API
+	private Calendar registrationDate; //TODO change to LocalDate API, must create a AttributeConverter class
 	
-	@Column(name = "username", length = 80)
+	@Column(name = "address", length = 80)
 	private String address;
+	
+	public Customer(String firstName, String lastName, String email) {
+		registrationDate = Calendar.getInstance();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+	}
+	
+	public Customer() {
+	}
 
 	public Long getId() {
 		return id;

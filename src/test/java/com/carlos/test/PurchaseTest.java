@@ -1,47 +1,82 @@
 package com.carlos.test;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.when;
-import org.junit.Before;
+
+import java.util.Arrays;
+import javax.transaction.Transactional;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import com.carlos.entity.Customer;
+import com.carlos.entity.Employee;
+import com.carlos.entity.Product;
 import com.carlos.entity.Purchase;
+import com.carlos.entity.PurchaseProduct;
+import com.carlos.repository.CustomerRepository;
+import com.carlos.repository.EmployeeRepository;
+import com.carlos.repository.ProductRepository;
 import com.carlos.repository.PurchaseRepository;
-import com.carlos.service.PurchaseServiceImpl;
 
-@RunWith(MockitoJUnitRunner.class)
-public class PurchaseTest {
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {
+		"classpath*:test/spring-context.xml",
+		"classpath*:test/spring-security.xml"})
+@Rollback
+@Transactional
+public class PurchaseTest extends AbstractDatabaseTest{
 
-	@InjectMocks
-	private PurchaseServiceImpl purchaseService;
-
-	@Mock
+	@Autowired
 	private PurchaseRepository purchaseRepository;
-
-	@Before
-	public void setup(){
-		MockitoAnnotations.initMocks(this);
-	}
 	
-	//TODO create tests on production too, H2.
+	@Autowired
+	private ProductRepository productRepository;
+	
+	@Autowired
+	private CustomerRepository customerRepository;
+	
+	@Autowired
+	private EmployeeRepository employeeRepository;
+
+	private Customer george;
+	private Employee memphis;
+	private Product bicycle;
+	private Product tricycle;
+	private Product quadcycle;
+	
+	//TODO Test Service
+	
+	@BeforeClass
+	public void setup() {
+		george = customerRepository.save(new Customer("George", "Lucas", "gmail@george.com"));
+		memphis = employeeRepository.save(new Employee("Henrison", "Ford", "yahoo@ford.com", 20000d));
+		bicycle = productRepository.save(new Product("Bicycle",25d, 2));
+		tricycle = productRepository.save(new Product("Tricycle", 40d, 3));
+		quadcycle = productRepository.save(new Product("quadcycle", 50d, 3));
+	}
 
 	@Test
-	public void connectionDatabaseTest() {
-
-		Purchase Purchase1 = new Purchase();
-		Purchase Purchase2 = new Purchase();
-		Purchase Purchase3 = new Purchase();
-
-		purchaseRepository.save(Purchase1);
-		purchaseRepository.save(Purchase2);
-		purchaseRepository.save(Purchase3);
-
-		when(purchaseRepository.count()).thenReturn(3l);
-		assertEquals(3l, purchaseService.countPurchaseTotal());
+	public void connectionDatabaseTest() { //TODO change name
+		
+		
+		Purchase purchase = new Purchase();
+		purchase.setCustomerId(george.getId());
+		purchase.setEmployeeId(memphis.getId());
+		purchase.setPaymentType("Credit Card");
+		
+		PurchaseProduct bicyclePurchase = new PurchaseProduct(purchase, bicycle, 1);
+		PurchaseProduct tricyclePurchase = new PurchaseProduct(purchase, tricycle, 1);
+		PurchaseProduct quadcyclePurchase = new PurchaseProduct(purchase, quadcycle, 1);
+		
+		purchase.setPurchaseProduct(Arrays.asList(bicyclePurchase, tricyclePurchase, quadcyclePurchase));
+		purchaseRepository.save(purchase);
+		
+		Purchase found = purchaseRepository.findByCustomerIdAndEmployeeId(george.getId(), memphis.getId());
+		
+		assertEquals(found.getPurchaseProduct().size(), 3);
 	}
 
 }

@@ -1,7 +1,5 @@
 package com.carlos.entity;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -33,9 +31,6 @@ public class Purchase {
 	@Column(name = "paymentType", length = 50)
 	private String paymentType;
 
-	@Column(name = "price", nullable = false)
-	private double price;
-
 	@Column(name = "purchaseDate", nullable = false, updatable = false)
 	@Temporal(TemporalType.DATE)
 	private Calendar purchaseDate;
@@ -45,7 +40,11 @@ public class Purchase {
 			cascade = CascadeType.ALL, 
 			orphanRemoval = true
 			)
-	private List<PurchaseProduct> purchaseProduct;
+	private List<PurchaseProduct> purchaseProduct;	
+
+	public Purchase() {
+		purchaseDate = Calendar.getInstance();
+	}
 
 	public Long getEmployeeId() {
 		return employeeId;
@@ -71,14 +70,6 @@ public class Purchase {
 		this.paymentType = paymentType;
 	}
 
-	public double getPrice() {
-		return price;
-	}
-
-	public void setPrice(double price) {
-		this.price = price;
-	}
-
 	public Calendar getPurchaseDate() {
 		return purchaseDate;
 	}
@@ -95,7 +86,7 @@ public class Purchase {
 		return purchaseProduct;
 	}
 
-	public void setPurchaseProduct(ArrayList<PurchaseProduct> purchaseProduct) {
+	public void setPurchaseProduct(List<PurchaseProduct> purchaseProduct) {
 		this.purchaseProduct = purchaseProduct;
 	}
 }

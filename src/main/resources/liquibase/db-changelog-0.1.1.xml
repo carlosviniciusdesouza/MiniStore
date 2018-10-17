@@ -22,6 +22,9 @@
 			<column name="inventory" type="BIGINT" defaultValue="0">
 				<constraints nullable="false" />
 			</column>
+			<column name="registrationDate" type="datetime">
+				<constraints nullable="false" />
+			</column>
 		</createTable>
 		<createTable tableName="customer" schemaName="ministore">
 			<column name="id" type="BIGINT" autoIncrement="true">

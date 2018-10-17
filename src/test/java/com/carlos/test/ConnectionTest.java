@@ -4,7 +4,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import javax.transaction.Transactional;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +15,11 @@ import com.carlos.repository.UsernameRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
-		"classpath*:spring-context.xml",
-		"classpath*:spring-security.xml"})
+		"classpath*:test/spring-context.xml",
+		"classpath*:test/spring-security.xml"})
 @Rollback
 @Transactional
-@Ignore
-public class ConnectionTest {
+public class ConnectionTest extends AbstractDatabaseTest{
 	
 	@Autowired
 	private UsernameRepository userRepository;
