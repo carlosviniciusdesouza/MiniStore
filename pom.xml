@@ -9,6 +9,8 @@
 	<name>MiniStore Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    	<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<jdk.version>1.9</jdk.version>
 		<junit.version>4.12</junit.version>
 		<spring.version>5.1.1.RELEASE</spring.version>

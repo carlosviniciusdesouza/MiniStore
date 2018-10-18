@@ -1,6 +1,5 @@
 package com.carlos.controller;
 
-
 import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,7 +17,7 @@ public class ProductController {
 	}
 	
 	@RequestMapping(path = "/pingadmin", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasRole('ADMIN') or hasRole('SELLER')")
 	public String pingAdmin(){
 		return "pingAdmin";
 	}

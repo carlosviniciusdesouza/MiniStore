@@ -2,6 +2,7 @@ package com.carlos.controller;
 
 import java.time.ZonedDateTime;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpStatus;
@@ -24,7 +25,7 @@ public class ErrorController {
 
 	@RequestMapping(path = "/unauthorised", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public ResponseEntity<ErrorResponse> unauthorizedRequest(HttpServletRequest request) {
+	public ResponseEntity<ErrorResponse> unauthorizedRequest() {
 		//TODO a proper error handling
 		ErrorResponse responseObject = new ErrorResponse(UNAUTHORIZED);
 		return new ResponseEntity<ErrorResponse>( responseObject, HttpStatus.UNAUTHORIZED);
@@ -35,17 +36,15 @@ public class ErrorController {
 	public ResponseEntity<ErrorResponse> forbiddenRequest() {
 		//TODO a proper error handling
 		ErrorResponse responseObject = new ErrorResponse(FORBIDDEN);
+		
 		return new ResponseEntity<ErrorResponse>( responseObject, HttpStatus.FORBIDDEN);
 	}
-	
 }
-
 class ErrorResponse{
 	public String message;
 	public String time =  ZonedDateTime.now().toString();
 	public ErrorResponse(String messageIn) {
 		message = messageIn;
 	}
-	//TODO utf-8 response
 	//TODO add more information on the this class
 }

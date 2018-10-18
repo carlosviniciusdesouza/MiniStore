@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.Arrays;
 import javax.transaction.Transactional;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,27 +39,16 @@ public class PurchaseTest extends AbstractDatabaseTest{
 	
 	@Autowired
 	private EmployeeRepository employeeRepository;
-
-	private Customer george;
-	private Employee memphis;
-	private Product bicycle;
-	private Product tricycle;
-	private Product quadcycle;
 	
-	//TODO Test Service
-	
-	@BeforeClass
-	public void setup() {
-		george = customerRepository.save(new Customer("George", "Lucas", "gmail@george.com"));
-		memphis = employeeRepository.save(new Employee("Henrison", "Ford", "yahoo@ford.com", 20000d));
-		bicycle = productRepository.save(new Product("Bicycle",25d, 2));
-		tricycle = productRepository.save(new Product("Tricycle", 40d, 3));
-		quadcycle = productRepository.save(new Product("quadcycle", 50d, 3));
-	}
-
 	@Test
 	public void connectionDatabaseTest() { //TODO change name
 		
+		Customer george = customerRepository.save(new Customer("George", "Lucas", "gmail@george.com"));
+		Employee memphis = employeeRepository.save(new Employee("Henrison", "Ford", "yahoo@ford.com", 20000d));
+		Product bicycle = productRepository.save(new Product("Bicycle",25d, 2));
+		Product tricycle = productRepository.save(new Product("Tricycle", 40d, 3));
+		Product quadcycle = productRepository.save(new Product("quadcycle", 50d, 3));
+		//TODO solve this someway, static objects setup method
 		
 		Purchase purchase = new Purchase();
 		purchase.setCustomerId(george.getId());
@@ -78,5 +66,6 @@ public class PurchaseTest extends AbstractDatabaseTest{
 		
 		assertEquals(found.getPurchaseProduct().size(), 3);
 	}
+
 
 }

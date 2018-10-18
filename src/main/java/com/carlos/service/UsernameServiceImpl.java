@@ -27,7 +27,7 @@ public class UsernameServiceImpl implements UsernameService{
 	@Override
 	public Username register(String login, String password) throws IllegalArgumentException{
 		if(userRepository.findByUsername(login) != null){
-			throw new IllegalArgumentException("O Usuário já existe");
+			throw new IllegalArgumentException("The Username already exists");
 		};
 		
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(12);

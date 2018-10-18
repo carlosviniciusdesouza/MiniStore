@@ -45,6 +45,15 @@ public class Purchase {
 	public Purchase() {
 		purchaseDate = Calendar.getInstance();
 	}
+	
+	public Purchase(Long employeeId, Long customerId, String paymentType) {
+		this.employeeId = employeeId;
+		this.customerId = customerId;
+		this.paymentType = paymentType;
+		purchaseDate = Calendar.getInstance();
+	}
+
+
 
 	public Long getEmployeeId() {
 		return employeeId;
